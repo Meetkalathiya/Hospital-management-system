@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Mobile Number</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 100px;
+			margin-left: 450px;
+			border-radius: 20px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+			height: 250px;
+			width: 500px;
+		}
+
+		input[type="text"] {
+			padding: 12px 20px;
+			margin-top: 20px;
+			box-sizing: border-box;
+			border: 3px solid black;
+			width: 250px;
+
+		}
+
+		label {
+			margin-top: 30px;
+			font-size: 25px;
+		}
+
+		button[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin-top: 20px;
+			border: none;
+			width: 200px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #45a049;
+		}
+		#logout{
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin-top: 20px;
+			margin-left: 1400px;
+			border: none;
+			width: 100px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+	</style>
+</head>
+
+<body>
+	<button id="logout">Logout</button>
+	<form method="POST" action="check.php" id="myForm">
+		<label for="mobile">Enter Mobile Number:</label>
+		<input type="text" id="mobile" name="mobile" required>
+
+		<button type="submit" id="submit-btn">Submit</button>
+	</form>
+</body>
+<script>
+
+	const form = document.getElementById('myForm');
+	const mobileInput = document.getElementById('mobile');
+	const errorMessage = document.createElement('div');
+	errorMessage.classList.add('error-message');
+
+	form.addEventListener('submit', (event) => {
+		event.preventDefault();
+		const mobileValue = mobileInput.value.trim();
+		if (isValidMobile(mobileValue)) {
+			// Mobile number is valid
+			form.submit(); // submit the form
+		} else {
+			// Mobile number is not valid
+			showErrorMessage('Please enter a valid 10 digit mobile number');
+		}
+	});
+
+	function isValidMobile(mobile) {
+		const mobileRegex = /^\d{10}$/;
+		return mobileRegex.test(mobile);
+	}
+
+	function showErrorMessage(message) {
+		errorMessage.innerText = message;
+		mobileInput.parentElement.appendChild(errorMessage);
+	}
+
+
+	const logoutButton = document.getElementById('logout');
+
+	logoutButton.addEventListener('click', (event) => {
+		event.preventDefault();
+
+		// show confirmation dialog
+		if (confirm('Are you sure you want to logout?')) {
+			// user clicked OK, perform logout
+			window.location.href = 'index.php';
+		}
+	});
+
+
+</script>
+
+
+</html>

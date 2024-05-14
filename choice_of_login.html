@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login Page</title>
+	<script type="text/javascript">
+		function preventBack() { window.history.forward(); }
+		setTimeout("preventBack()", 0);
+		window.onunload = function () { null };  
+	</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			background-color: aliceblue;
+		}
+
+		#login-form {
+			width: 500px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 50px;
+			margin-left: 500px;
+		}
+
+		h1 {
+			font-size: 32px;
+			margin-bottom: 20px;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #f2f2f2;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+		}
+
+		label {
+			font-size: 18px;
+			margin-bottom: 10px;
+			margin-right: 400px;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: none;
+			border-radius: 4px;
+		}
+
+		button[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			width: 200px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<form id="login-form">
+		<h1>Login</h1>
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username" required>
+
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required>
+
+		<button type="submit" id="submit-btn">Login</button>
+	</form>
+
+	<script>
+		const form = document.getElementById('login-form');
+		const username = document.getElementById('username');
+		const password = document.getElementById('password');
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			checkInputs();
+		});
+
+		function checkInputs() {
+			// trim to remove the whitespaces
+			const usernameValue = username.value.trim();
+			const passwordValue = password.value.trim();
+
+			if (usernameValue === '') {
+				setErrorFor(username, 'Username cannot be blank');
+			} else {
+				setSuccessFor(username);
+			}
+
+			if (passwordValue === '') {
+				setErrorFor(password, 'Password cannot be blank');
+			} else {
+				setSuccessFor(password);
+			}
+		}
+
+
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			checkInputs();
+		});
+
+		function checkInputs() {
+			// trim to remove the whitespaces
+			const usernameValue = username.value.trim();
+			const passwordValue = password.value.trim();
+
+			if (usernameValue === 'priyank viradiya' && passwordValue === 'priyank' || usernameValue === 'mihir rupapara' && passwordValue === 'mihir') {
+				window.location.href = 'appoinment_data.php';
+			} else if (usernameValue === 'malhar manvar' && passwordValue === 'malhar') {
+				window.location.href = 'check-form.html';
+			} else if (usernameValue === '') {
+				setErrorFor(username, 'Username cannot be blank');
+			} else if (passwordValue === '') {
+				setErrorFor(password, 'Password cannot be blank');
+			} else {
+				alert("Invalid username or password. Please try again.");
+			}
+		}
+
+		function setErrorFor(input, message) {
+			const formControl = input.parentElement;
+			const errorMessage = formControl.querySelector('small');
+			formControl.className = 'form-control error';
+			errorMessage.innerText = message;
+		}
+
+		function setSuccessFor(input) {
+			const formControl = input.parentElement;
+			formControl.className = 'form-control success';
+		}
+
+
+
+	</script>
+</body>
+
+</html>
