@@ -1,0 +1,2 @@
+It is a website created using html css and php in that website patient can get appoinment. There is sign in and log in facility is there for patient and doctor can check how many appointment are there. patient get log in into their own portal also after geting checkedup by doctor whatever prescription is given there is reflect on patient portal.
+![image](https://github.com/Meetkalathiya/Hospital-management-system/assets/92502594/98e1d459-b353-475a-839d-01f8d792f0ef)
